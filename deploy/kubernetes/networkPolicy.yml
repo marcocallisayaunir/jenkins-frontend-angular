@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: "#{{Namespace}}#"
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: back-np-shareholders
+  namespace: "#{{Namespace}}#"
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: apishareholders-deployment
+      app.kubernetes.io/component: apishareholders
+  policyTypes:
+  - Ingress
+  ingress:
+  - from: 
+    - ipBlock:
+        cidr: 0.0.0.0/0
+    ports:
+    - protocol: TCP
+      port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: front-np-shareholders
+  namespace: "#{{Namespace}}#"
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: frontshareholders-deployment
+      app.kubernetes.io/component: frontshareholders
+  policyTypes:
+  - Ingress
+  ingress:
+  - from: 
+    - ipBlock:
+        cidr: 0.0.0.0/0
+    ports:
+    - protocol: TCP
+      port: 8080

@@ -1,0 +1,18 @@
+#Api
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-conf
+  namespace: marco
+data:
+  TZ: America/La_Paz
+  ASPNETCORE_ENVIRONMENT: "Development"
+  API_BASE_URL: "API_BASE_URL"
+  DATABASE_NAME: "databaseName"
+  ENDPOINT: "Endpoint"
+  ENDPOINT_PROFILE: "EndpointProfile"
+  RESOURCE_GROUP: "resourceGroup"
+  SERVER_FULLY_QUALIFIED_NAME: "serverFullyQualifiedName"
+  SERVER_NAME: "serverName"
+  TELEMETRY_INSTRUMENTATIONKEY: "TELEMETRY_INSTRUMENTATIONKEY"
+  TELEMETRY_ROLENAME: "TELEMETRY_ROLENAME"
